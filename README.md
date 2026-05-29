@@ -2,11 +2,8 @@
 
 **BrainNetGFM: A Graph-Based Foundation Model for Brain Network Construction Integrating Individualized Geometry and Joint Self-Supervised Learning**
 
-Chunzhi Zhao, Tulay Adali, Jing Sui, Dailin Wen, Shile Qi*, Vince D. Calhoun
-
 Published in *Proceedings of the 32nd ACM SIGKDD Conference on Knowledge Discovery and Data Mining V.2 (KDD '26)*. DOI: https://doi.org/10.1145/3770855.3818988
 
-`*` Corresponding author.
 
 ## Overview
 
@@ -29,16 +26,10 @@ An individualized brain atlas generation module is part of the broader research 
 Place the overview pipeline figure and interpretability figure in the `assets/` directory using the following file names:
 
 <p align="center">
-  <img src="assets/brainnetgfm_pipeline.png" width="850" alt="BrainNetGFM overall pipeline">
+  <img width="935" height="508" alt="image" src="https://github.com/user-attachments/assets/0ee0ab78-a221-49c1-87d1-bb4d54549f5b" />
 </p>
 
 <p align="center"><b>Figure 1.</b> Overall BrainNetGFM workflow.</p>
-
-<p align="center">
-  <img src="assets/brainnetgfm_interpretability.png" width="850" alt="BrainNetGFM interpretability analysis">
-</p>
-
-<p align="center"><b>Figure 2.</b> Interpretability analysis of learned brain network representations.</p>
 
 ## Repository structure
 
@@ -74,7 +65,6 @@ BrainNetGFM/
 └── requirements.txt
 ```
 
-The implementation is organized so that `pretraining.py` and `finetuning.py` remain lightweight execution entry points. Configuration dataclasses are in `configs.py`, graph datasets are in `datasets.py`, graph construction utilities are in `graph.py`, model layers are in `layers.py`, self-supervised model logic is in `ssl_model.py`, losses and metrics are in `losses.py`, training loops are in `pretrain_engine.py` and `finetune_engine.py`, and data splitting utilities are in `splits.py`.
 
 ## Installation
 
@@ -108,18 +98,6 @@ Fine-tuning requires:
 - a functional connectivity `.npy` file with the same supported shapes as above;
 - an Excel label file containing the downstream target columns.
 
-The default label column names in `configs/finetune.yaml` are:
-
-| Task | Default column | Target type |
-|---|---:|---|
-| Disease classification | `disease` | integer class label |
-| Sex classification | `sex` | integer class label |
-| Symptom regression | `symptom_score` | continuous value |
-| Age regression | `age` | continuous value |
-
-### ROI geometry file
-
-If individualized or atlas-level ROI geometry is used, provide an Excel file in which the first three columns contain ROI coordinates. The number of coordinate rows should match the number of ROIs in the functional connectivity matrix.
 
 ## Pretraining
 
@@ -169,41 +147,6 @@ checkpoints/finetune/
 
 For K-fold validation, fold-specific suffixes are appended to the checkpoint names.
 
-## Core configuration options
-
-### Graph construction
-
-| Option | Description |
-|---|---|
-| `topk_ratio` | Ratio of strongest upper-triangular FC edges retained when constructing the graph. |
-| `fisher_z` | Whether to apply Fisher z-transformation. Use `null` or `false` if the matrix is already transformed. |
-| `use_abs_for_topk` | Whether to select edges by absolute FC magnitude. |
-| `roi_mni_path` | Excel file containing ROI coordinates. |
-| `use_graph_attr` | Whether to append graph-level FC mean and standard deviation to graph embeddings. |
-| `pe_type` | Positional encoding type: `none`, `lap`, or `rw`. |
-| `pe_dim` | Positional encoding dimension. |
-
-### Backbone
-
-| Option | Description |
-|---|---|
-| `gnn_hidden_dim` | Hidden dimension of the Graph Transformer encoder. |
-| `num_gnn_layers` | Number of Graph Transformer layers. |
-| `transformer_heads` | Number of attention heads. |
-| `jk_mode` | Jumping Knowledge mode: `none`, `concat`, or `max`. |
-| `node_norm_type` | Node feature projector normalization: `batchnorm`, `layernorm`, or `none`. |
-
-### Self-supervised objectives
-
-| Option | Description |
-|---|---|
-| `mask_ratio_node` | Node mask ratio for reconstruction. |
-| `mask_ratio_edge` | Edge mask ratio for reconstruction. |
-| `recon_target_mode` | Reconstruction target mode: `full`, `topk`, or `proj`. |
-| `recon_loss_type` | Reconstruction loss: `sce`, `mse`, or `sce+mse`. |
-| `contrastive_loss_type` | Graph-level contrastive loss: `nt_xent` or `info_nce`. |
-| `node_cl_cross_subject_weight` | Weight for weak cross-subject same-ROI positives in node-level contrastive learning. |
-
 ## Notes on reproducibility
 
 Set `seed` in the YAML configuration files before running experiments. For multi-GPU training, use `torchrun` so that the scripts correctly initialize DistributedDataParallel. Data files, generated checkpoints, and local logs should not be committed to the repository.
@@ -215,7 +158,7 @@ If you use this code, please cite:
 ```bibtex
 @inproceedings{zhao2026brainnetgfm,
   title = {BrainNetGFM: A Graph-Based Foundation Model for Brain Network Construction Integrating Individualized Geometry and Joint Self-Supervised Learning},
-  author = {Zhao, Chunzhi and Adali, Tulay and Sui, Jing and Wen, Dailin and Qi, Shile and Calhoun, Vince D.},
+  author = {Zhao et al., Tulay Adali, Sui et al., Wen et al., Qi et al.and Vince D. Calhoun},
   booktitle = {Proceedings of the 32nd ACM SIGKDD Conference on Knowledge Discovery and Data Mining V.2},
   series = {KDD '26},
   year = {2026},
@@ -225,4 +168,5 @@ If you use this code, please cite:
 
 ## Contact
 
-For questions about the released implementation, please open an issue on GitHub.
+<img width="119" height="41" alt="image" src="https://github.com/user-attachments/assets/3841e46d-0643-47ce-bdb0-a1ce6246ea99" />
+This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivs International 4.0 License.
