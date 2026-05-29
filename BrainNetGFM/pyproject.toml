@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "brainnetgfm"
+version = "0.1.0"
+description = "Graph-based foundation model for brain network construction and downstream brain phenotyping."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "LicenseRef-Proprietary-or-To-Be-Determined"}
+authors = [
+  {name = "Chunzhi Zhao"},
+  {name = "Tulay Adali"},
+  {name = "Jing Sui"},
+  {name = "Dailin Wen"},
+  {name = "Shile Qi"},
+  {name = "Vince D. Calhoun"}
+]
+dependencies = [
+  "numpy>=1.23",
+  "pandas>=1.5",
+  "openpyxl>=3.1",
+  "PyYAML>=6.0",
+  "torch>=2.0",
+  "torch-geometric>=2.3"
+]
+
+[tool.setuptools.packages.find]
+include = ["brainnetgfm*"]
