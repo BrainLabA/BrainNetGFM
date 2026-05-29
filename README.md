@@ -16,8 +16,7 @@ The released code includes:
 - a Graph Transformer backbone with GraphNorm, residual connections, Jumping Knowledge aggregation, mean-plus-max graph pooling, and optional graph attributes;
 - masked node and edge reconstruction with learnable mask tokens;
 - graph-level and node-level contrastive learning;
-- downstream fine-tuning for classification and regression tasks, including disease classification, sex classification, symptom regression, and age regression;
-- single-node multi-GPU training through PyTorch DistributedDataParallel.
+- downstream fine-tuning for classification and regression tasks.
 
 An individualized brain atlas generation module is part of the broader research framework. The manuscript associated with that module is currently under review, and the corresponding source code will be released after the related paper is accepted or published.
 
